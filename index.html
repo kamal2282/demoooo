@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<title>AGAHUB Clothes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #f2f2f2;
+}
+header {
+    background: #000;
+    color: #fff;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header h1 {
+    font-size: 22px;
+    margin: 0;
+}
+.cart {
+    font-size: 14px;
+}
+.hero {
+    height: 55vh;
+    background: url("https://images.unsplash.com/photo-1521334884684-d80222895322") center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hero h2 {
+    background: rgba(0,0,0,0.65);
+    color: #fff;
+    padding: 20px 30px;
+    font-size: 34px;
+}
+.products {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+.product {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.product img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+}
+.product-info {
+    padding: 15px;
+}
+.product-info h3 {
+    margin: 0 0 8px;
+}
+.product-info p {
+    font-size: 14px;
+    color: #555;
+}
+.price {
+    font-weight: bold;
+    margin: 10px 0;
+}
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #000;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+}
+.btn.whatsapp {
+    background: #25D366;
+    margin-top: 10px;
+}
+footer {
+    background: #000;
+    color: #aaa;
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>AGAHUB</h1>
+    <div class="cart">🛒 Səbət: <span id="cartCount">0</span></div>
+</header>
+
+<section class="hero">
+    <h2>Street · Minimal · IG Style</h2>
+</section>
+
+<section class="products">
+
+<div class="product">
+    <img src="https://images.unsplash.com/photo-1520975922284-8b456906c813">
+    <div class="product-info">
+        <h3>Oversize T-Shirt</h3>
+        <p>100% pambıq · rahat kəsim</p>
+        <div class="price">39 AZN</div>
+        <div class="btn" onclick="addToCart('Oversize T-Shirt',39)">Səbətə əlavə et</div>
+    </div>
+</div>
+
+<div class="product">
+    <img src="https://images.unsplash.com/photo-1520974735194-8a46a52b86b6">
+    <div class="product-info">
+        <h3>Hoodie Sweatshirt</h3>
+        <p>Payız & qış üçün ideal</p>
+        <div class="price">79 AZN</div>
+        <div class="btn" onclick="addToCart('Hoodie Sweatshirt',79)">Səbətə əlavə et</div>
+    </div>
+</div>
+
+<div class="product">
+    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f">
+    <div class="product-info">
+        <h3>Minimal Jacket</h3>
+        <p>Şəhər stili dizayn</p>
+        <div class="price">120 AZN</div>
+        <div class="btn" onclick="addToCart('Minimal Jacket',120)">Səbətə əlavə et</div>
+    </div>
+</div>
+
+</section>
+
+<div style="text-align:center; padding-bottom:40px;">
+    <div class="btn whatsapp" onclick="orderWhatsApp()">📲 WhatsApp ilə sifariş</div>
+</div>
+
+<footer>
+© 2026 AGAHUB CLOTHES · Instagram-ready brand
+</footer>
+
+<script>
+let cart = [];
+
+function addToCart(name, price) {
+    cart.push({name, price});
+    document.getElementById("cartCount").innerText = cart.length;
+}
+
+function orderWhatsApp() {
+    if(cart.length === 0){
+        alert("Səbət boşdur!");
+        return;
+    }
+
+    let message = "Salam, sifariş vermək istəyirəm:%0A";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        message += `${index+1}. ${item.name} - ${item.price} AZN%0A`;
+        total += item.price;
+    });
+
+    message += `%0AÜmumi məbləğ: ${total} AZN`;
+
+    window.open(`https://wa.me/994998690252?text=${message}`, "_blank");
+}
+</script>
+
+</body>
+</html>
